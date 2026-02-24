@@ -1,0 +1,251 @@
+/* src/assets/css/layout.css - Versión corregida */
+
+:root {
+  --bg-dark: #0a0c14;
+  --bg-sidebar: #0f1219;
+  --bg-card: #1a1f2b;
+  --bg-card-hover: #232835;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --sidebar-w: 280px;
+  --header-h: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg-dark);
+  position: relative;
+}
+
+/* ===== SIDEBAR FIJO ===== */
+.admin-sidebar {
+  width: var(--sidebar-w);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+/* ===== MAIN CONTENT CON MARGEN CORRECTO ===== */
+.admin-main {
+  flex: 1;
+  margin-left: var(
+    --sidebar-w
+  ); /* ESTO ES CRÍTICO - debe ser igual al ancho del sidebar */
+  width: calc(
+    100% - var(--sidebar-w)
+  ); /* Asegura que ocupe el espacio restante */
+  min-height: 100vh;
+  background: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  height: var(--header-h);
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* ===== CONTENIDO DE PÁGINAS - VERSIÓN CORREGIDA ===== */
+.admin-page {
+  padding: 30px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  min-height: calc(100vh - var(--header-h));
+  background: var(--bg-dark);
+  box-sizing: border-box;
+}
+
+/* Grid para formulario + tabla - AHORA SÍ FUNCIONA */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  width: 100%; /* Asegura que el grid ocupe todo el ancho */
+}
+
+@media (min-width: 1024px) {
+  .page-grid {
+    grid-template-columns: 380px 1fr; /* Formulario fijo, tabla flexible */
+  }
+}
+
+/* ===== RESTO DE ESTILOS (se mantienen igual) ===== */
+.admin-logo {
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-icon {
+  font-size: 28px;
+  background: rgba(16, 185, 129, 0.15);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-menu {
+  list-style: none;
+  padding: 20px 12px;
+}
+
+.admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.admin-nav-link:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.active-link {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.3);
+}
+
+.topbar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.btn-logout {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* ===== UTILIDADES ===== */
+.text-white {
+  color: var(--text-primary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.w-100 {
+  width: 100%;
+}
+.text-center {
+  text-align: center;
+}
+.fw-bold {
+  font-weight: 700;
+}

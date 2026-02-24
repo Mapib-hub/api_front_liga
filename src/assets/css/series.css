@@ -1,0 +1,378 @@
+/* src/assets/css/series.css */
+
+/* ===== ESTILOS ESPECÍFICOS PARA SERIES ===== */
+
+/* Header temático */
+.series-header {
+  background: linear-gradient(135deg, var(--bg-card), rgba(16, 185, 129, 0.1));
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.series-header::before {
+  content: "🏆";
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  font-size: 120px;
+  opacity: 0.1;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.series-title-section {
+  z-index: 1;
+}
+
+.series-title-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.series-title-section p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.series-stats {
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+
+.series-stat-card {
+  background: var(--bg-dark);
+  padding: 16px 28px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.series-stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffd700;
+  line-height: 1;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.series-stat-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Grid de series */
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 5px;
+}
+
+/* Tarjeta de serie - diseño tipo trofeo */
+.serie-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.serie-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.6);
+  border-color: #ffd700;
+}
+
+/* Efecto de brillo en hover */
+.serie-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.serie-card:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+/* Cabecera de la tarjeta con ícono */
+.serie-card-header {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+  padding: 20px 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.serie-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 6px rgba(255, 215, 0, 0.3));
+}
+
+.serie-id {
+  background: var(--bg-dark);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+  border: 1px solid var(--border-color);
+}
+
+/* Contenido de la tarjeta */
+.serie-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.serie-nombre {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  position: relative;
+  display: inline-block;
+}
+
+.serie-nombre::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #ffd700;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.serie-card:hover .serie-nombre::after {
+  width: 60px;
+}
+
+.serie-descripcion {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Pie de tarjeta con acciones */
+.serie-card-footer {
+  padding: 15px 20px 20px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.serie-acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.serie-btn {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: var(--bg-dark);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.serie-btn-editar {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.serie-btn-editar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+.serie-btn-eliminar {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.serie-btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5);
+}
+
+/* Versión compacta para móviles */
+.serie-btn-compact {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+}
+
+/* Badge para serie destacada (si la hay) */
+.serie-badge {
+  background: #ffd700;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+/* Mensaje cuando no hay descripción */
+.serie-descripcion-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Estadísticas adicionales en hover */
+.serie-card-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.serie-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Animación de entrada */
+@keyframes slideInTrophy {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.serie-card {
+  animation: slideInTrophy 0.4s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .series-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .series-header::before {
+    font-size: 80px;
+    right: 10px;
+    bottom: -10px;
+  }
+
+  .series-title-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .series-stats {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .series-stat-card {
+    padding: 12px 20px;
+  }
+
+  .series-stat-number {
+    font-size: 1.6rem;
+  }
+
+  .series-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .serie-acciones {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .series-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .series-stat-card {
+    width: 100%;
+  }
+
+  .serie-card-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

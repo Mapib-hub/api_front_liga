@@ -1,0 +1,682 @@
+/* ===== PÁGINA DE GOLEADORES ===== */
+.goleadores-page {
+  padding: 25px;
+}
+
+/* ===== HEADER ===== */
+.goleadores-header {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.goleadores-header::before {
+  content: "⚽";
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  font-size: 120px;
+  opacity: 0.08;
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+.header-icon {
+  font-size: 2.2rem;
+  margin-right: 10px;
+}
+
+.header-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.btn-nuevo-gol {
+  background: linear-gradient(135deg, var(--accent), #059669);
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+  z-index: 2;
+}
+
+.btn-nuevo-gol:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(16, 185, 129, 0.5);
+}
+
+.btn-nuevo-gol span {
+  font-size: 1.2rem;
+}
+
+/* ===== BUSCADOR ===== */
+.buscador-container {
+  position: relative;
+  flex: 3;
+  z-index: 10; /* Asegurar que el contenedor tenga contexto */
+}
+
+.buscador-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.buscador-icon {
+  position: absolute;
+  left: 15px;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.buscador-input {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 15px 15px 15px 50px;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.buscador-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* ===== TABLA DE GOLEADORES ===== */
+.goleadores-table-container {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.goleadores-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.goleadores-table th {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-secondary);
+  padding: 18px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--accent);
+  text-align: left;
+}
+
+.goleadores-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.gol-row {
+  transition: all 0.3s ease;
+}
+
+.gol-row:hover {
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* ===== INFORMACIÓN DEL JUGADOR ===== */
+.jugador-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jugador-nombre {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.jugador-id {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-family: monospace;
+}
+
+/* ===== INFORMACIÓN DEL CLUB ===== */
+.club-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.club-logo-mini {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  padding: 3px;
+  border: 1px solid var(--border-color);
+}
+
+/* ===== BADGES ===== */
+.serie-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.fecha-small {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 4px;
+}
+
+.cantidad-badge {
+  background: linear-gradient(135deg, var(--accent), #059669);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+/* ===== BOTÓN ELIMINAR ===== */
+.btn-eliminar {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-eliminar:hover {
+  background: #ef4444;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1000;
+  overflow: visible !important; /* Permitir que el dropdown sobresalga */
+}
+
+.modal-content.modal-lg {
+  max-width: 1000px;
+}
+
+.modal-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-header h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-header h3 span {
+  font-size: 1.8rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.modal-body {
+  overflow: visible !important; /* Permitir que el dropdown sobresalga */
+}
+
+/* ===== FORMULARIO DEL MODAL ===== */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-select {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 25px 0;
+}
+
+/* ===== SECCIÓN DE GOLEADORES EN MODAL ===== */
+.goles-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.goleadores-column {
+  background: var(--bg-dark);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.local-column {
+  border-left: 4px solid var(--accent);
+}
+
+.visita-column {
+  border-left: 4px solid #ef4444;
+}
+
+.column-header {
+  font-weight: 700;
+  font-size: 1rem;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.local-header {
+  color: var(--accent);
+}
+
+.visita-header {
+  color: #ef4444;
+}
+
+.goleadores-lista {
+  position: relative;
+  z-index: 1;
+  overflow: visible !important; /* Permitir dropdowns */
+}
+
+.goleadores-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.goleadores-lista::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+.goleadores-lista::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.goleadores-lista::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.goleador-item {
+  position: relative;
+  z-index: auto;
+}
+
+.buscador-container {
+  position: relative;
+  flex: 3;
+}
+
+.goleador-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.goleador-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.goles-cantidad {
+  width: 60px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ===== DROPDOWN DE BÚSQUEDA ===== */
+.resultados-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  z-index: 9999; /* MUY alto para que esté sobre todo */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+}
+
+.resultado-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.resultado-item:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.resultado-item.disabled {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.resultado-item.disabled:hover {
+  background: none;
+}
+
+/* ===== BOTONES DE GOLEADORES ===== */
+.btn-eliminar-goleador {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-eliminar-goleador:hover {
+  background: #ef4444;
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-agregar-goleador {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 2px dashed;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.local-btn {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.local-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.visita-btn {
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.visita-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* ===== MODAL FOOTER ===== */
+.modal-footer {
+  padding: 20px 25px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+}
+
+.btn-cerrar-modal {
+  padding: 12px 28px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cerrar-modal:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.btn-guardar-modal {
+  padding: 12px 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #059669);
+  border: none;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-guardar-modal:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(16, 185, 129, 0.5);
+}
+
+.btn-guardar-modal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .goleadores-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .btn-nuevo-gol {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .goles-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .goleadores-table th,
+  .goleadores-table td {
+    padding: 12px 10px;
+  }
+
+  .club-info {
+    flex-direction: column;
+    text-align: center;
+  }
+}

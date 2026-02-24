@@ -1,0 +1,550 @@
+/* src/assets/css/instituciones.css */
+
+/* ===== ESTILOS ESPECÍFICOS PARA INSTITUCIONES ===== */
+
+/* Header con estilo escudo/heráldico */
+.instituciones-header {
+  background: linear-gradient(135deg, var(--bg-card), rgba(16, 185, 129, 0.15));
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto de escudo en el fondo */
+.instituciones-header::before {
+  content: "🛡️";
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  font-size: 140px;
+  opacity: 0.1;
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+.instituciones-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 30% 50%,
+    rgba(255, 215, 0, 0.1),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.instituciones-title-section {
+  z-index: 1;
+}
+
+.instituciones-title-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #c0c0c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.instituciones-title-section h2 span {
+  font-size: 2rem;
+  filter: drop-shadow(0 4px 6px rgba(192, 192, 192, 0.5));
+}
+
+.instituciones-title-section p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Stats con estilo heráldico */
+.instituciones-stats {
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+
+.instituciones-stat-card {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 18px 30px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.instituciones-stat-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #c0c0c0, #10b981, #c0c0c0);
+  border-radius: 14px;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.instituciones-stat-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #c0c0c0;
+  line-height: 1;
+  margin-bottom: 5px;
+  text-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+.instituciones-stat-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Grid de instituciones */
+.instituciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 5px;
+}
+
+/* Tarjeta de institución - diseño tipo escudo/club */
+.institucion-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.institucion-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.6);
+  border-color: #c0c0c0;
+}
+
+/* Efecto de bordes heráldicos */
+.institucion-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c0c0c0, #10b981, #c0c0c0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.institucion-card:hover::before {
+  opacity: 1;
+}
+
+/* Contenedor del logo/escudo */
+.institucion-logo-container {
+  height: 180px;
+  background: linear-gradient(145deg, var(--bg-dark), var(--bg-card));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Efecto de fondo tipo cancha */
+.institucion-logo-container::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(16, 185, 129, 0.03) 20px,
+    rgba(16, 185, 129, 0.03) 40px
+  );
+  animation: moveGrass 20s linear infinite;
+}
+
+@keyframes moveGrass {
+  from {
+    transform: rotate(0deg) translateY(0);
+  }
+  to {
+    transform: rotate(360deg) translateY(-20px);
+  }
+}
+
+.institucion-logo {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.institucion-card:hover .institucion-logo {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.6));
+}
+
+.institucion-logo-placeholder {
+  width: 100px;
+  height: 100px;
+  background: var(--bg-dark);
+  border: 3px dashed var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Cabecera de la tarjeta con ID y tipo */
+.institucion-card-header {
+  padding: 15px 20px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.institucion-badge {
+  background: linear-gradient(135deg, #c0c0c0, #808080);
+  color: white;
+  padding: 4px 15px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4);
+}
+
+.institucion-id {
+  background: var(--bg-dark);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: monospace;
+  border: 1px solid var(--border-color);
+}
+
+/* Contenido de la tarjeta */
+.institucion-card-body {
+  padding: 20px;
+  flex: 1;
+}
+
+.institucion-nombre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.institucion-nombre::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #c0c0c0,
+    #10b981,
+    #c0c0c0,
+    transparent
+  );
+  border-radius: 2px;
+}
+
+.institucion-descripcion {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border-left: 3px solid #c0c0c0;
+  font-style: italic;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+/* Personalización del scroll para la descripción */
+.institucion-descripcion::-webkit-scrollbar {
+  width: 4px;
+}
+
+.institucion-descripcion::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+.institucion-descripcion::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+/* Pie de tarjeta con acciones */
+.institucion-card-footer {
+  padding: 15px 20px 20px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.institucion-acciones {
+  display: flex;
+  gap: 12px;
+}
+
+.institucion-btn {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: var(--bg-dark);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.institucion-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.institucion-btn:hover::before {
+  left: 100%;
+}
+
+.institucion-btn-editar {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.institucion-btn-editar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+}
+
+.institucion-btn-eliminar {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.institucion-btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+}
+
+/* Preview de imagen en formulario */
+.institucion-preview-container {
+  margin-top: 15px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  position: relative;
+  background: var(--bg-dark);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.institucion-preview {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.institucion-preview-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 10px;
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.institucion-preview-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.institucion-preview-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Animación de entrada */
+@keyframes shieldAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.institucion-card {
+  animation: shieldAppear 0.5s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .instituciones-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .instituciones-header::before {
+    font-size: 100px;
+    right: 10px;
+    bottom: -10px;
+  }
+
+  .instituciones-title-section h2 {
+    font-size: 1.8rem;
+    justify-content: center;
+  }
+
+  .instituciones-stats {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .instituciones-stat-card {
+    padding: 12px 20px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .instituciones-stat-number {
+    font-size: 1.8rem;
+  }
+
+  .instituciones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .institucion-acciones {
+    flex-direction: column;
+  }
+
+  .institucion-logo-container {
+    height: 150px;
+  }
+
+  .institucion-logo {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .instituciones-stats {
+    flex-direction: column;
+  }
+
+  .instituciones-stat-card {
+    width: 100%;
+  }
+
+  .institucion-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .institucion-nombre {
+    font-size: 1.3rem;
+  }
+}
