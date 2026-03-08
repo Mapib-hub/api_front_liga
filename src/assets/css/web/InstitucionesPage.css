@@ -1,0 +1,208 @@
+/* ===== LOADER ===== */
+.loader {
+  text-align: center;
+  padding: 50px;
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container.mar_cont {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: #a3d4e7;
+}
+
+/* ===== TÍTULO ===== */
+.display-4 {
+  font-size: 2.5rem !important;
+  color: white;
+}
+
+.text-neon {
+  color: var(--neon-blue);
+}
+
+.separador-neon {
+  width: 80px;
+  height: 4px;
+  background: var(--neon-blue);
+  border-radius: 2px;
+  margin-top: 15px;
+}
+
+/* ===== TARJETA DE INSTITUCIÓN ===== */
+.institucion-card-v2 {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.institucion-card-v2:hover {
+  transform: translateY(-10px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+  background: rgb(13, 85, 93);
+}
+
+/* Envoltura del Logo */
+.logo-wrapper {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.institucion-card-v2:hover .logo-wrapper {
+  transform: scale(1.1);
+}
+
+.logo-institucion-v2 {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+}
+
+/* Texto y detalles */
+.info-institucion {
+  margin-top: 20px;
+  z-index: 2;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+.nombre-institucion-v2 {
+  color: #1a3b5d;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.institucion-card-v2:hover .nombre-institucion-v2 {
+  color: #fff;
+}
+
+.btn-ver-mas {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.institucion-card-v2:hover .btn-ver-mas {
+  opacity: 1;
+}
+
+/* Efecto decorativo de fondo */
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.institucion-card-v2:hover .card-glow {
+  opacity: 1;
+}
+
+/* ===== GRID ===== */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.g-4 {
+  gap: 20px;
+}
+
+.col-6 {
+  width: 50%;
+  padding: 0 10px;
+}
+
+.col-md-4 {
+  width: 48%;
+}
+
+.col-lg-3 {
+  width: 47%;
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    width: 31.333%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-3 {
+    width: 23%;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem !important;
+  }
+
+  .logo-institucion-v2 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .nombre-institucion-v2 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .display-4 {
+    font-size: 1.5rem !important;
+  }
+
+  .logo-institucion-v2 {
+    width: 80px;
+    height: 80px;
+  }
+
+  .nombre-institucion-v2 {
+    font-size: 0.9rem;
+  }
+
+  .btn-ver-mas {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 500px) {
+  .col-lg-3 {
+    width: 100%;
+  }
+}

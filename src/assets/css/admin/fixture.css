@@ -1,10 +1,10 @@
 /* Header */
-.fixture-header {
+.fixture-header_admin {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-  background: var(--bg-card);
+  background: #1a1f2b;
   padding: 20px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
@@ -45,7 +45,7 @@
 }
 
 .maestro-btn {
-  background: var(--bg-card);
+  background: #1a1f2b;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
@@ -87,7 +87,7 @@
 
 /* Sección Series */
 .series-section {
-  background: var(--bg-card);
+  background: #1a1f2b;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 30px;
@@ -122,7 +122,7 @@
 
 /* Selector de Fechas */
 .fechas-section {
-  background: var(--bg-card);
+  background: #1a1f2b;
   border-radius: 12px;
   padding: 20px;
   border: 1px solid var(--border-color);
@@ -149,6 +149,7 @@
 .partidos-table {
   width: 100%;
   border-collapse: collapse;
+  background: #1b404e;
 }
 
 .partidos-table th {
@@ -229,7 +230,7 @@
   cursor: pointer;
 }
 
-.empty-state {
+.empty-state_admin {
   padding: 40px;
   text-align: center;
   color: var(--text-secondary);

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../../assets/css/series.css"; // CSS específico para series
-import "../../assets/css/fechas.css"; // Clases base (form-card, etc.)
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/series.css"; // CSS específico para series
+import "../../assets/css/admin/fechas.css"; // Clases base (form-card, etc.)
 
-const API_URL = "http://192.168.1.250/api_backend/admin/series";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/series`;
 
 const Series = () => {
   const [data, setData] = useState([]);
@@ -17,6 +19,7 @@ const Series = () => {
 
   const fetchData = async () => {
     try {
+      // ✅ axios con URL completa
       const res = await axios.get(API_URL);
       setData(Array.isArray(res.data) ? res.data : []);
       setLoading(false);
@@ -34,8 +37,10 @@ const Series = () => {
 
     try {
       if (editandoId) {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/actualizar/${editandoId}`, formData);
       } else {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/guardar`, formData);
       }
       cancelarEdicion();
@@ -61,6 +66,7 @@ const Series = () => {
   const eliminar = async (id) => {
     if (!window.confirm("¿Eliminar serie?")) return;
     try {
+      // ✅ axios con URL completa
       await axios.delete(`${API_URL}/eliminar/${id}`);
       fetchData();
     } catch (e) {
@@ -148,20 +154,18 @@ const Series = () => {
             </div>
           </form>
         </div>
-
         {/* Listado de Series - Lado Derecho */}
-        <div className="table-card">
+        <div className="table-card-serie">
           <div className="table-card-header">
             <h3>🏆 Listado de Series</h3>
             <span className="badge">{data.length} series</span>
           </div>
-
           <div className="series-grid">
             {data.length > 0 ? (
               data.map((item, index) => (
                 <div
                   key={item.id}
-                  className="serie-card"
+                  className="serie-card-admin"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="serie-card-header">
@@ -219,5 +223,4 @@ const Series = () => {
     </div>
   );
 };
-
 export default Series;

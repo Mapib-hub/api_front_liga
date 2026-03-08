@@ -1,0 +1,250 @@
+/* StatsCards.css */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Tarjeta principal */
+.stats-card {
+  background-color: #006880;
+  border: 2px solid #00d4ff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Lado izquierdo - Textos */
+.stats-left {
+  width: 45%;
+  padding-right: 25px;
+  border-right: 1px solid #444;
+  text-align: center;
+}
+
+.stats-titulo {
+  color: #00d4ff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0 0 5px 0;
+}
+
+.stats-subtitulo {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0 0 5px 0;
+}
+
+.stats-texto {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Lado derecho - Logos */
+.stats-right {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding-left: 5px;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo-contenedor {
+  width: 85px;
+  height: 85px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logo-contenedor:hover {
+  transform: translateY(-3px);
+  border-color: #00d4ff;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.logo-contenedor img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+}
+/* StatsCards.css - AGREGAR AL FINAL */
+
+/* ===== ESTADÍSTICAS MINI ===== */
+.stats-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stats-mini-card {
+  background: #006880;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 15px 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stats-mini-card:hover {
+  transform: translateY(-3px);
+  border-color: #00d4ff;
+  box-shadow: 0 6px 15px rgba(0, 212, 255, 0.2);
+}
+
+.stats-mini-numero {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #00d4ff;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.stats-mini-label {
+  display: block;
+  color: #aaa;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats-mini-texto {
+  display: block;
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.stats-mini-destacado {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00ff88;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-mini-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-mini-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stats-mini-card {
+    padding: 12px;
+  }
+
+  .stats-mini-numero {
+    font-size: 1.8rem;
+  }
+}
+/* Responsive */
+@media (max-width: 992px) {
+  .stats-left {
+    width: 40%;
+  }
+
+  .stats-right {
+    width: 60%;
+  }
+
+  .logo-contenedor {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (max-width: 840px) {
+  .logo-contenedor {
+    width: 87px;
+    height: 87px;
+  }
+}
+@media (max-width: 768px) {
+  .stats-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stats-left {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #444;
+    padding-right: 0;
+    padding-bottom: 15px;
+    text-align: center;
+  }
+
+  .stats-right {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 10px;
+    justify-content: center;
+  }
+
+  .logo-contenedor {
+    width: 90px;
+    height: 90px;
+  }
+
+  .stats-titulo {
+    font-size: 1.3rem;
+  }
+
+  .stats-subtitulo {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-card {
+    padding: 10px;
+  }
+  .stats-titulo {
+    font-size: 1.2rem;
+  }
+
+  .stats-subtitulo {
+    font-size: 1rem;
+  }
+
+  .stats-texto {
+    font-size: 0.9rem;
+  }
+  .logo-contenedor {
+    width: 80px;
+    height: 80px;
+  }
+}

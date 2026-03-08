@@ -131,7 +131,7 @@
 
 /* Tarjeta de institución - diseño tipo escudo/club */
 .institucion-card {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 20px;
   border: 1px solid var(--border-color);
   overflow: hidden;

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-// Importamos el mismo CSS maestro (o podrías tener uno unificado)
-import "../../assets/css/temporadas.css"; // Reutilizamos los estilos de fechas
+import axios from "axios"; // ✅ Usamos axios
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/temporadas.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/temporadas";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/temporadas`;
 
 const Temporadas = () => {
   const [data, setData] = useState([]);
@@ -17,6 +18,7 @@ const Temporadas = () => {
 
   const fetchData = async () => {
     try {
+      // ✅ axios con URL completa
       const res = await axios.get(API_URL);
       setData(Array.isArray(res.data) ? res.data : []);
       setLoading(false);
@@ -34,8 +36,10 @@ const Temporadas = () => {
 
     try {
       if (editandoId) {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/actualizar/${editandoId}`, formData);
       } else {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/guardar`, formData);
       }
       cancelarEdicion();
@@ -47,6 +51,7 @@ const Temporadas = () => {
 
   const activarTemporada = async (id) => {
     try {
+      // ✅ axios con URL completa
       await axios.post(`${API_URL}/activar/${id}`);
       fetchData();
     } catch (e) {
@@ -57,6 +62,7 @@ const Temporadas = () => {
   const eliminar = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar esta temporada?")) return;
     try {
+      // ✅ axios con URL completa
       await axios.delete(`${API_URL}/eliminar/${id}`);
       fetchData();
     } catch (e) {
@@ -159,7 +165,7 @@ const Temporadas = () => {
         </div>
 
         {/* Listado de Temporadas - Lado Derecho */}
-        <div className="table-card">
+        <div className="table-card-admin">
           <div className="table-card-header">
             <h3>📋 Listado de Temporadas</h3>
             <span className="badge">{data.length} temporadas</span>
@@ -170,7 +176,7 @@ const Temporadas = () => {
               data.map((item) => (
                 <div
                   key={item.id}
-                  className={`temporada-card ${item.actual == 1 ? "temporada-actual" : ""}`}
+                  className={`temporada-card_admin ${item.actual == 1 ? "temporada-actual" : ""}`}
                 >
                   <div className="temporada-header">
                     <span className="temporada-id">ID: {item.id}</span>

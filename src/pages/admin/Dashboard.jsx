@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../../assets/css/dashboard.css";
+import axios from "axios"; // ✅ Usamos axios
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/dashboard.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/estadisticas";
-const POSICIONES_API =
-  "http://192.168.1.250/api_backend/api/estadisticas/posiciones";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ SOLO BASE_URL en todas las rutas
+const ADMIN_URL = `${BASE_URL}admin/estadisticas`;
+const POSICIONES_API = `${BASE_URL}api/estadisticas/posiciones`; // 👈 NOTA: esta tiene /api porque es para el front
+const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
@@ -19,7 +20,8 @@ const Dashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const response = await axios.get(`${API_URL}`);
+      // ✅ axios con URL completa
+      const response = await axios.get(ADMIN_URL);
       setData(response.data);
     } catch (error) {
       console.error("Error al cargar dashboard:", error);
@@ -29,8 +31,8 @@ const Dashboard = () => {
   const fetchPosiciones = async () => {
     try {
       const seriesIds = [1, 2, 3, 4, 5, 6, 7, 8];
-      const promesas = seriesIds.map((id) =>
-        axios.get(`${POSICIONES_API}/${id}`),
+      const promesas = seriesIds.map(
+        (id) => axios.get(`${POSICIONES_API}/${id}`), // ✅ axios con URL completa
       );
 
       const respuestas = await Promise.all(promesas);
@@ -104,7 +106,6 @@ const Dashboard = () => {
 
       {/* KPIs Grid */}
       <div className="kpi-grid">
-        {/* ... (tus KPIs igual) ... */}
         <div className="kpi-card kpi-primary">
           <div className="kpi-icon">📅</div>
           <div className="kpi-content">
@@ -162,7 +163,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Goles por serie (arriba) */}
+      {/* Goles por serie */}
       <div className="card mb-4">
         <div className="card-header">
           <h3 className="card-title">
@@ -171,7 +172,7 @@ const Dashboard = () => {
           </h3>
           <span className="card-badge">Total: {data.totalGoles}</span>
         </div>
-        <div className="card-body">
+        <div className="card-bod-admin">
           {data.desgloseGoles?.map((g) => {
             const goles = parseInt(g.goles) || 0;
             const porcentaje =
@@ -203,7 +204,7 @@ const Dashboard = () => {
           </h3>
           <span className="card-badge">Top 3 por serie</span>
         </div>
-        <div className="card-body">
+        <div className="card-bod-admin">
           <div className="tablas-grid">
             {posiciones.map((tabla) => (
               <div key={tabla.serie_id} className="tabla-mini-card">
@@ -267,7 +268,7 @@ const Dashboard = () => {
             Tendencia de Goles
           </h3>
         </div>
-        <div className="card-body">
+        <div className="card-bod-admin">
           <div className="grafico-container">
             {data.golesPorFecha?.map((f) => {
               const goles = parseInt(f.total_goles) || 0;

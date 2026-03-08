@@ -1,0 +1,182 @@
+/* layout.css */
+
+/* ===== VARIABLES ===== */
+:root {
+  --color-primario: #1a3b5d;
+  --color-secundario: #00d4ff;
+  --color-neon: #00ff00;
+  --color-suspension: #dc3545;
+  --color-confirmado: #02626c;
+  --color-navbar: #a3e5f2;
+  --texto-claro: #ffffff;
+}
+
+body {
+  background: #a3d4e7;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== BANNER SUPERIOR ===== */
+.jornada-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  position: relative;
+  min-height: 90px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.jornada-banner.suspendida {
+  background-color: var(--color-suspension);
+}
+
+.jornada-banner.confirmada {
+  background-color: var(--color-confirmado);
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+.logo-institucional {
+  position: absolute;
+  left: 30px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.jornada-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.jornada-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-web {
+  background-color: var(--color-navbar);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-links-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.link-neon {
+  color: var(--color-primario) !important;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  padding: 5px;
+  border: 1px solid #1a3b5d;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.link-neon:hover {
+  color: var(--color-secundario) !important;
+  transform: translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+.footer-institucional {
+  background-color: var(--color-primario);
+  color: white;
+  padding: 30px 0;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.footer-institucional h6 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.footer-institucional p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* ===== BANNER COMPACTO PARA MÓVIL ===== */
+@media (max-width: 768px) {
+  .jornada-banner {
+    display: block;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .logo-institucional {
+    position: absolute;
+    left: 1%;
+    height: 60px;
+    margin-bottom: 5px;
+  }
+
+  .jornada-info h2 {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .jornada-info p {
+    font-size: 0.85rem;
+    text-align: right;
+  }
+
+  /* Navbar móvil */
+  .navbar-web {
+    padding: 10px 0;
+  }
+
+  .nav-links-wrapper {
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .link-neon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-institucional {
+    height: 50px;
+  }
+
+  .jornada-info h2 {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .jornada-info p {
+    font-size: 0.75rem;
+    text-align: right;
+  }
+
+  .nav-links-wrapper {
+    gap: 8px;
+  }
+
+  .link-neon {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+}

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import "../../assets/css/instituciones.css"; // CSS específico
-import "../../assets/css/fechas.css"; // Clases base
+import axios from "axios"; // ✅ Usamos axios
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/instituciones.css"; // CSS específico
+import "../../assets/css/admin/fechas.css"; // Clases base
 
-const API_URL = "http://192.168.1.250/api_backend/admin/instituciones";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/instituciones`;
+const IMG_BASE = `${BASE_URL}`;
 
 const Instituciones = () => {
   const [data, setData] = useState([]);
@@ -24,6 +26,7 @@ const Instituciones = () => {
 
   const fetchData = async () => {
     try {
+      // ✅ axios con URL completa
       const res = await axios.get(API_URL);
       setData(Array.isArray(res.data) ? res.data : []);
       setLoading(false);
@@ -50,8 +53,10 @@ const Instituciones = () => {
 
     try {
       if (editandoId) {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/actualizar/${editandoId}`, formData);
       } else {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/guardar`, formData);
       }
       cancelarEdicion();
@@ -80,6 +85,7 @@ const Instituciones = () => {
   const eliminar = async (id) => {
     if (!window.confirm("¿Eliminar esta institución?")) return;
     try {
+      // ✅ axios con URL completa
       await axios.delete(`${API_URL}/eliminar/${id}`);
       fetchData();
     } catch (e) {
@@ -215,7 +221,7 @@ const Instituciones = () => {
         </div>
 
         {/* Listado de Instituciones - Lado Derecho */}
-        <div className="table-card">
+        <div className="table-card_inst">
           <div className="table-card-header">
             <h3>🛡️ Directorio de Instituciones</h3>
             <span className="badge">{data.length} registros</span>

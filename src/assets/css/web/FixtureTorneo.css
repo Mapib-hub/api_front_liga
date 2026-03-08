@@ -1,0 +1,153 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.fixture-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bg-oscuro {
+  background-color: #c1e8e4;
+  border-radius: 12px;
+  color: #1a3b5d;
+}
+
+/* ===== CABECERA DE FECHA ===== */
+.fix-header {
+  border-radius: 10px;
+  padding: 12px 20px;
+  border-left: 4px solid var(--neon-blue);
+}
+
+.fix-header h4 {
+  margin: 0;
+  font-weight: bold;
+  color: #1a3b5d;
+  font-size: 1.3rem;
+}
+
+/* ===== TARJETA DE PARTIDO ===== */
+.card-partido {
+  transition: transform 0.2s;
+  height: 100%;
+  background: transparent;
+}
+
+.card-partido:hover {
+  transform: translateY(-5px);
+}
+
+.card-body {
+  background-color: rgb(9, 123, 143);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* ===== EQUIPO ===== */
+.equipo-box {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.equipo-box img {
+  max-height: 50px;
+  width: auto;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.equipo-box p {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #1a3b5d;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== VS BADGE ===== */
+.vs-badge {
+  margin: 0 10px;
+}
+
+.vs-badge .badge {
+  background-color: var(--dark-bg) !important;
+  color: var(--neon-blue);
+  font-weight: bold;
+  padding: 10px 12px !important;
+  border-radius: 50% !important;
+  font-size: 0.85rem;
+}
+
+/* ===== LOADER ===== */
+.loader {
+  text-align: center;
+  padding: 50px;
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+}
+
+/* ===== GRID ===== */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 0px !important;
+  text-align: center;
+}
+
+.g-3 {
+  gap: 15px;
+}
+
+@media (min-width: 950px) {
+  .tarj_part {
+    width: 31.333%;
+  }
+}
+@media (max-width: 950px) {
+  .tarj_part {
+    width: 49%;
+  }
+}
+@media (max-width: 810px) {
+  .tarj_part {
+    width: 48%;
+  }
+}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .equipo-box img {
+    max-height: 35px;
+  }
+
+  .equipo-box p {
+    font-size: 0.75rem;
+  }
+
+  .vs-badge .badge {
+    padding: 6px 8px !important;
+    font-size: 0.7rem;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .fix-header h4 {
+    font-size: 1.1rem;
+  }
+  .tarj_part {
+    width: 48%;
+  }
+}
+@media (max-width: 680px) {
+  .tarj_part {
+    width: 100%;
+  }
+}

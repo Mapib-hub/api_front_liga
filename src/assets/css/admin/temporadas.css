@@ -5,9 +5,8 @@
   gap: 20px;
   padding: 24px;
 }
-
-.temporada-card {
-  background: var(--bg-card);
+.temporada-card_admin {
+  background: #122c36;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
@@ -15,8 +14,13 @@
   position: relative;
   overflow: hidden;
 }
-
-.temporada-card:hover {
+.table-card-admin {
+  background: #122c36;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+.temporada-card_admin:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
   border-color: rgba(16, 185, 129, 0.3);

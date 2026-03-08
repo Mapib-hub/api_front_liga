@@ -85,10 +85,15 @@
   gap: 25px;
   padding: 5px;
 }
-
+.table-card-serie {
+  background: #122c36;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
 /* Tarjeta de serie - diseño tipo trofeo */
-.serie-card {
-  background: var(--bg-card);
+.serie-card-admin {
+  background: #122c36;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   overflow: hidden;

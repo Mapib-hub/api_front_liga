@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // 👈 IMPORTAR useParams
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
 import SerieCard from "../../components/admin/SerieCard";
-import "../../assets/css/fixture.css";
+import "../../assets/css/admin/fixture.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/fixture";
-const SERIES_URL = "http://192.168.1.250/api_backend/admin/series";
-const FECHAS_URL = "http://192.168.1.250/api_backend/admin/fechas";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/fixture`;
+const SERIES_URL = `${BASE_URL}admin/series`;
+const FECHAS_URL = `${BASE_URL}admin/fechas`;
 
 const Fixture = () => {
   const navigate = useNavigate();
-  const { fechaId: fechaIdUrl } = useParams(); // 👈 OBTENER FECHA DE LA URL
+  const { fechaId: fechaIdUrl } = useParams();
 
   const [series, setSeries] = useState([]);
   const [fechas, setFechas] = useState([]);
@@ -46,6 +48,7 @@ const Fixture = () => {
 
   const fetchInitialData = async () => {
     try {
+      // ✅ axios con URL completa
       const [resSeries, resFechas] = await Promise.all([
         axios.get(SERIES_URL),
         axios.get(FECHAS_URL),
@@ -62,11 +65,12 @@ const Fixture = () => {
 
   const fetchPartidos = async (fechaId) => {
     try {
-      console.log("🔍 Cargando partidos para fecha ID:", fechaId);
-      console.log("URL:", `${API_URL}/${fechaId}`);
+      //console.log("🔍 Cargando partidos para fecha ID:", fechaId);
+      // console.log("URL:", `${API_URL}/${fechaId}`);
 
+      // ✅ axios con URL completa
       const res = await axios.get(`${API_URL}/${fechaId}`);
-      console.log("✅ Respuesta:", res.data);
+      //console.log("✅ Respuesta:", res.data);
 
       setPartidos(res.data.duelos || []);
     } catch (error) {
@@ -101,7 +105,7 @@ const Fixture = () => {
   return (
     <div className="admin-page">
       {/* Header */}
-      <div className="fixture-header">
+      <div className="fixture-header_admin">
         <h2>⚽ Gestión de Fixture</h2>
         <div className="db-indicator">
           <span className="db-dot"></span>
@@ -224,7 +228,7 @@ const Fixture = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-center empty-state">
+                  <td colSpan="5" className="text-center empty-state_admin">
                     No hay partidos para esta fecha.
                     <button className="btn-crear-partidos">
                       Crear Partidos

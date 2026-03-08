@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../assets/css/generar-jornada.css";
+import { BASE_URL } from "../../api";  // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/generar-jornada.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/fixture";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/fixture`;
 
 const GenerarJornada = () => {
   const { principalId } = useParams();
@@ -21,6 +23,7 @@ const GenerarJornada = () => {
 
   const fetchDueloYSeries = async () => {
     try {
+      // ✅ axios con URL completa
       const response = await axios.get(
         `${API_URL}/generar-jornada/${principalId}`,
       );
@@ -88,6 +91,7 @@ const GenerarJornada = () => {
         formData.append("series[]", id);
       });
 
+      // ✅ axios con URL completa
       const response = await axios.post(
         `${API_URL}/guardar-jornada`,
         formData,
@@ -98,7 +102,7 @@ const GenerarJornada = () => {
 
       if (response.data.status) {
         alert("✅ Partidos generados correctamente");
-        navigate(`/fixture/${duelo.fecha_id}`);
+        navigate(`/admin/fixture/${duelo.fecha_id}`);
       } else {
         alert("❌ " + response.data.message);
       }
@@ -211,7 +215,7 @@ const GenerarJornada = () => {
               <button
                 type="button"
                 className="btn-cancelar"
-                onClick={() => navigate(`/fixture`)}
+                onClick={() => navigate(`/admin/fixture/${duelo.fecha_id}`)}
               >
                 Cancelar y volver
               </button>

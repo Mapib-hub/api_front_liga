@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  background: var(--bg-card);
+  background: #132d36;
   border-radius: 16px;
   padding: 20px 30px;
   border: 1px solid var(--border-color);
@@ -56,7 +56,7 @@
 }
 
 .kpi-card {
-  background: var(--bg-card);
+  background: #132d36;
   border-radius: 20px;
   padding: 20px;
   border: 1px solid var(--border-color);
@@ -151,7 +151,6 @@
   border-radius: 10px;
   transition: width 0.3s;
 }
-
 /* ===== CARDS ===== */
 .card {
   background: var(--bg-card);
@@ -160,8 +159,8 @@
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   margin-bottom: 25px;
+  padding: 1%;
 }
-
 .card-header {
   padding: 20px 25px;
   background: rgba(0, 0, 0, 0.2);
@@ -194,8 +193,8 @@
   font-weight: 600;
 }
 
-.card-body {
-  padding: 20px 25px;
+.card-bod-admin {
+  background-color: #1a1f2b;
 }
 
 /* ===== SERIE STATS ===== */

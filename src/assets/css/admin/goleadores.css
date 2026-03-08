@@ -5,7 +5,7 @@
 
 /* ===== HEADER ===== */
 .goleadores-header {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 16px;
   padding: 25px 30px;
   margin-bottom: 30px;
@@ -68,7 +68,8 @@
 }
 
 /* ===== BUSCADOR ===== */
-.buscador-container {
+.buscador-container-goles {
+  padding: 20px;
   position: relative;
   flex: 3;
   z-index: 10; /* Asegurar que el contenedor tenga contexto */
@@ -106,7 +107,7 @@
 
 /* ===== TABLA DE GOLEADORES ===== */
 .goleadores-table-container {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   overflow: hidden;
@@ -116,6 +117,7 @@
 .goleadores-table {
   width: 100%;
   border-collapse: collapse;
+  background: #1b404e;
 }
 
 .goleadores-table th {
@@ -605,6 +607,7 @@
 
 /* ===== EMPTY STATE ===== */
 .empty-state {
+  background-color: #132d36;
   text-align: center;
   padding: 40px !important;
   color: var(--text-muted);

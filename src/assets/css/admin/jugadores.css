@@ -95,7 +95,7 @@
 
 /* ===== TARJETA DE JUGADOR ===== */
 .jugador-card {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   overflow: hidden;

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../../assets/css/editar-fecha.css";
+import api, { BASE_URL } from "../../api"; // ✅ Importamos api y BASE_URL
+import "../../assets/css/admin/editar-fecha.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/partidos/serie";
-const JUGADORES_API =
-  "http://192.168.1.250/api_backend/admin/fixture/get-jugadores-partido";
-const GOLES_API =
-  "http://192.168.1.250/api_backend/admin/registro/guardarGolesPartido";
-const GUARDAR_API =
-  "http://192.168.1.250/api_backend/admin/fixture/guardarGolesFecha";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ URLs corregidas usando BASE_URL
+const API_URL = `${BASE_URL}admin/partidos/serie`;
+const JUGADORES_API = `${BASE_URL}admin/fixture/get-jugadores-partido`;
+const GOLES_API = `${BASE_URL}admin/registro/guardarGolesPartido`;
+const GUARDAR_API = `${BASE_URL}admin/fixture/guardarGolesFecha`;
+const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const EditarFecha = () => {
   const { serieId, fechaId } = useParams();
@@ -45,8 +43,9 @@ const EditarFecha = () => {
   const fetchPartidos = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `${API_URL}/${serieId}/fecha/${fechaId}`,
+      // ✅ Cambiado a api.get con ruta limpia
+      const response = await api.get(
+        `/admin/partidos/serie/${serieId}/fecha/${fechaId}`,
       );
 
       if (response.data.success) {
@@ -113,7 +112,10 @@ const EditarFecha = () => {
     setDropdownActivo(null);
 
     try {
-      const response = await axios.get(`${JUGADORES_API}/${partido.id}`);
+      // ✅ Cambiado a api.get con ruta limpia
+      const response = await api.get(
+        `/admin/fixture/get-jugadores-partido/${partido.id}`,
+      );
       setJugadoresLocal(response.data.local || []);
       setJugadoresVisita(response.data.visita || []);
       setModalAbierto(true);
@@ -173,9 +175,14 @@ const EditarFecha = () => {
         }
       });
 
-      const response = await axios.post(GOLES_API, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // ✅ Cambiado a api.post con ruta limpia
+      const response = await api.post(
+        "/admin/registro/guardarGolesPartido",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
 
       if (response.data.success) {
         alert("✅ " + response.data.message);
@@ -216,11 +223,14 @@ const EditarFecha = () => {
       const formData = new FormData();
       formData.append("datos", JSON.stringify(datos));
 
-      ///console.log("Enviando datos:", datos);
-
-      const response = await axios.post(GUARDAR_API, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // ✅ Cambiado a api.post con ruta limpia
+      const response = await api.post(
+        "/admin/fixture/guardarGolesFecha",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
 
       if (response.data.status) {
         alert("✅ " + response.data.message);
@@ -464,7 +474,7 @@ const EditarFecha = () => {
           <button
             type="button"
             className="btn-cancelar"
-            onClick={() => navigate(`/fixture/serie/${serieId}`)}
+            onClick={() => navigate(`/admin/fixture/serie/${serieId}`)}
           >
             Cancelar
           </button>
@@ -479,7 +489,7 @@ const EditarFecha = () => {
         </div>
       </form>
 
-      {/* MODAL DE GOLEADORES */}
+      {/* MODAL DE GOLEADORES (igual) */}
       {modalAbierto && partidoActual && (
         <div className="modal-overlay">
           <div className="modal-content">

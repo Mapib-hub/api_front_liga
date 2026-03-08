@@ -12,7 +12,7 @@
 
 /* Form Card */
 .form-card {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   overflow: hidden;
@@ -167,6 +167,7 @@
 .admin-table {
   width: 100%;
   border-collapse: collapse;
+  background: #1b404e;
 }
 
 .admin-table th {

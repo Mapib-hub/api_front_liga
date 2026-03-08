@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../../assets/css/goleadores.css";
+import "../../assets/css/admin/goleadores.css";
 
 const API_URL = "http://192.168.1.250/api_backend/admin";
 const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
@@ -359,7 +359,7 @@ const Goleadores = () => {
       </div>
 
       {/* Buscador */}
-      <div className="buscador-container">
+      <div className="buscador-container-goles">
         <div className="buscador-input-group">
           <span className="buscador-icon">🔍</span>
           <input

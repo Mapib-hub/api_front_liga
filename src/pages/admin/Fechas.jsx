@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../../assets/css/fechas.css";
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/fechas.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/fechas";
-const TEMP_URL = "http://192.168.1.250/api_backend/admin/temporadas";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/fechas`;
+const TEMP_URL = `${BASE_URL}admin/temporadas`;
 
 const Fechas = () => {
   const [data, setData] = useState([]);
@@ -14,6 +16,7 @@ const Fechas = () => {
   const [form, setForm] = useState({
     nombre_fecha: "",
     estado: "pendiente",
+    estado_infantiles: "pendiente",
     temporada_id: "",
   });
 
@@ -23,6 +26,7 @@ const Fechas = () => {
 
   const fetchInitialData = async () => {
     try {
+      // ✅ axios con URL completa
       const [resFechas, resTemps] = await Promise.all([
         axios.get(API_URL),
         axios.get(TEMP_URL),
@@ -43,9 +47,11 @@ const Fechas = () => {
     const formData = new FormData();
     formData.append("nombre_fecha", form.nombre_fecha);
     formData.append("estado", form.estado);
+    formData.append("estado_infantiles", form.estado_infantiles);
     formData.append("temporada_id", form.temporada_id);
 
     try {
+      // ✅ axios con URL completa
       const url = editandoId
         ? `${API_URL}/actualizar/${editandoId}`
         : `${API_URL}/guardar`;
@@ -95,11 +101,26 @@ const Fechas = () => {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Estado</label>
+              <label className="form-label">Estado Adultos</label>
               <select
                 className="form-select"
                 value={form.estado}
                 onChange={(e) => setForm({ ...form, estado: e.target.value })}
+              >
+                <option value="pendiente">⏳ Pendiente</option>
+                <option value="jugada">✅ Jugada</option>
+                <option value="suspendida">🚫 Suspendida</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Estado Infantil</label>
+              <select
+                className="form-select"
+                value={form.estado_infantiles}
+                onChange={(e) =>
+                  setForm({ ...form, estado_infantiles: e.target.value })
+                }
               >
                 <option value="pendiente">⏳ Pendiente</option>
                 <option value="jugada">✅ Jugada</option>
@@ -137,7 +158,12 @@ const Fechas = () => {
                   className="btn btn-secondary"
                   onClick={() => {
                     setEditandoId(null);
-                    setForm({ ...form, nombre_fecha: "", estado: "pendiente" });
+                    setForm({
+                      ...form,
+                      nombre_fecha: "",
+                      estado: "pendiente",
+                      estado_infantiles: "pendiente",
+                    });
                   }}
                 >
                   Cancelar
@@ -160,7 +186,8 @@ const Fechas = () => {
                 <tr>
                   <th>Temporada</th>
                   <th>Fecha</th>
-                  <th>Estado</th>
+                  <th>Estado Adultos</th>
+                  <th>Estado Infantil</th>
                   <th className="text-center">Acciones</th>
                 </tr>
               </thead>
@@ -181,6 +208,17 @@ const Fechas = () => {
                           {item.estado === "suspendida" && "🚫 Suspendida"}
                         </span>
                       </td>
+                      <td>
+                        <span
+                          className={`status-badge status-${item.estado_infantiles}`}
+                        >
+                          {item.estado_infantiles === "pendiente" &&
+                            "⏳ Pendiente"}
+                          {item.estado_infantiles === "jugada" && "✅ Jugada"}
+                          {item.estado_infantiles === "suspendida" &&
+                            "🚫 Suspendida"}
+                        </span>
+                      </td>
                       <td className="text-center">
                         <button
                           onClick={() => {
@@ -188,6 +226,7 @@ const Fechas = () => {
                             setForm({
                               nombre_fecha: item.nombre_fecha,
                               estado: item.estado,
+                              estado_infantiles: item.estado_infantiles,
                               temporada_id: item.temporada_id,
                             });
                           }}
@@ -201,7 +240,7 @@ const Fechas = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="4" className="text-center empty-state">
+                    <td colSpan="5" className="text-center empty-state">
                       No hay fechas cargadas aún
                     </td>
                   </tr>

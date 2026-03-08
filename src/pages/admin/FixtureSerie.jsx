@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../assets/css/fixture-serie.css";
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/fixture-serie.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/partidos/serie";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
-
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/partidos/serie`;
+const IMG_BASE = `${BASE_URL}`;
+/*const IMG_BASE = `${BASE_URL}uploads/logos/`; */
 const FixtureSerie = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ const FixtureSerie = () => {
   const fetchFixtureSerie = async () => {
     try {
       setLoading(true);
+      // ✅ axios con URL completa
       const response = await axios.get(`${API_URL}/${id}`);
 
       if (response.data.success) {

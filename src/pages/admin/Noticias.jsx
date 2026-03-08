@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../../assets/css/noticias.css"; // Importamos el CSS específico
-import "../../assets/css/fechas.css"; // Para reutilizar clases base (form-card, etc.)
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/noticias.css"; // Importamos el CSS específico
+import "../../assets/css/admin/fechas.css"; // Para reutilizar clases base (form-card, etc.)
 
-const API_URL = "http://192.168.1.250/api_backend/admin/noticias";
-const INST_URL = "http://192.168.1.250/api_backend/admin/instituciones";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/noticias/";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/noticias`;
+const INST_URL = `${BASE_URL}admin/instituciones`;
+const IMG_BASE = `${BASE_URL}uploads/noticias/`;
 
 const Noticias = () => {
   const [noticias, setNoticias] = useState([]);
@@ -28,6 +30,7 @@ const Noticias = () => {
 
   const fetchData = async () => {
     try {
+      // ✅ axios con URL completa
       const [resNoticias, resInst] = await Promise.all([
         axios.get(API_URL),
         axios.get(INST_URL),
@@ -58,8 +61,10 @@ const Noticias = () => {
 
     try {
       if (editandoId) {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/actualizar/${editandoId}`, data);
       } else {
+        // ✅ axios con URL completa
         await axios.post(`${API_URL}/guardar`, data);
       }
       cancelarEdicion();
@@ -96,6 +101,7 @@ const Noticias = () => {
   const eliminarNoticia = async (id) => {
     if (!window.confirm("¿Eliminar definitivamente esta noticia?")) return;
     try {
+      // ✅ axios con URL completa
       await axios.delete(`${API_URL}/eliminar/${id}`);
       fetchData();
     } catch (e) {
@@ -242,9 +248,8 @@ const Noticias = () => {
             </div>
           </form>
         </div>
-
         {/* Listado de Noticias - Lado Derecho */}
-        <div className="table-card">
+        <div className="table-card-noti">
           <div className="table-card-header">
             <h3>📋 Últimas Noticias</h3>
             <span className="badge">{noticias.length} publicaciones</span>
@@ -253,7 +258,7 @@ const Noticias = () => {
           <div className="noticias-grid">
             {noticias.length > 0 ? (
               noticias.map((n) => (
-                <div key={n.id} className="noticia-card">
+                <div key={n.id} className="noticia-card-admin">
                   <div className="noticia-imagen-container">
                     {n.imagen ? (
                       <img

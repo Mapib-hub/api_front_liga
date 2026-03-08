@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../../assets/css/jugadores.css"; // Vamos a crear este CSS
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/jugadores.css"; // Vamos a crear este CSS
 
-const API_URL = "http://192.168.1.250/api_backend/admin/jugadores";
-const INST_URL = "http://192.168.1.250/api_backend/admin/instituciones";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/jugadores/";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/jugadores`;
+const INST_URL = `${BASE_URL}admin/instituciones`;
+const IMG_BASE = `${BASE_URL}uploads/jugadores/`;
 
 const Jugadores = () => {
   const [data, setData] = useState([]);
@@ -34,6 +36,7 @@ const Jugadores = () => {
 
   const fetchInitialData = async () => {
     try {
+      // ✅ axios con URL completa
       const [resJugadores, resInst] = await Promise.all([
         axios.get(API_URL),
         axios.get(INST_URL),
@@ -72,6 +75,7 @@ const Jugadores = () => {
     }
 
     try {
+      // ✅ axios con URL completa
       const url = editandoId
         ? `${API_URL}/actualizar/${editandoId}`
         : `${API_URL}/guardar`;
@@ -140,6 +144,7 @@ const Jugadores = () => {
   const eliminar = async (id) => {
     if (!window.confirm("¿Estás seguro de eliminar este jugador?")) return;
     try {
+      // ✅ axios con URL completa
       await axios.delete(`${API_URL}/eliminar/${id}`);
       fetchInitialData();
     } catch (e) {
@@ -381,7 +386,7 @@ const Jugadores = () => {
         </div>
 
         {/* Lista de Jugadores */}
-        <div className="table-card">
+        <div className="table-card-jug">
           <div className="table-card-header">
             <h3>📋 Listado de Jugadores</h3>
             <span className="badge">{jugadoresFiltrados.length} jugadores</span>

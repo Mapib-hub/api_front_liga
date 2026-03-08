@@ -5,7 +5,7 @@
 
 /* ===== HEADER ESPECIAL ===== */
 .especiales-header {
-  background: var(--bg-card);
+  background: #122c36;
   border-radius: 16px;
   padding: 25px 30px;
   margin-bottom: 30px;
@@ -113,6 +113,7 @@
 .especiales-table {
   width: 100%;
   border-collapse: collapse;
+  background-color: #122c36 !important;
 }
 
 .especiales-table th {

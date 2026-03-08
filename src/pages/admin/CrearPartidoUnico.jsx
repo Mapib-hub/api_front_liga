@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../../assets/css/crear-partido.css";
+import axios from "axios";  // ✅ Cambiamos a axios
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/crear-partido.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ Solo necesitamos IMG_BASE para las imágenes
+const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const CrearPartidoUnico = () => {
   const navigate = useNavigate();
@@ -37,10 +38,11 @@ const CrearPartidoUnico = () => {
 
   const fetchCatalogos = async () => {
     try {
+      // ✅ axios con URL completa
       const [resTemps, resSeries, resInst] = await Promise.all([
-        axios.get(`${API_URL}/temporadas`),
-        axios.get(`${API_URL}/series`),
-        axios.get(`${API_URL}/instituciones`),
+        axios.get(`${BASE_URL}admin/temporadas`),
+        axios.get(`${BASE_URL}admin/series`),
+        axios.get(`${BASE_URL}admin/instituciones`),
       ]);
 
       setTemporadas(resTemps.data || []);
@@ -56,9 +58,8 @@ const CrearPartidoUnico = () => {
 
   const fetchFechasPorTemporada = async (temporadaId) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/getFechasPorTemporada/${temporadaId}`,
-      );
+      // ✅ axios con URL completa
+      const response = await axios.get(`${BASE_URL}admin/getFechasPorTemporada/${temporadaId}`);
       setFechas(response.data || []);
     } catch (error) {
       console.error("Error al cargar fechas:", error);
@@ -112,8 +113,9 @@ const CrearPartidoUnico = () => {
         }
       });
 
+      // ✅ axios con URL completa
       const response = await axios.post(
-        `${API_URL}/fixture/guardar-unico`,
+        `${BASE_URL}admin/fixture/guardar-unico`,
         formDataToSend,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -122,7 +124,7 @@ const CrearPartidoUnico = () => {
 
       if (response.data.status) {
         alert("✅ Partido especial creado correctamente");
-        navigate("/fixture");
+        navigate("/admin/fixture");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -135,6 +137,7 @@ const CrearPartidoUnico = () => {
       setEnviando(false);
     }
   };
+
   if (loading) {
     return (
       <div className="admin-page">

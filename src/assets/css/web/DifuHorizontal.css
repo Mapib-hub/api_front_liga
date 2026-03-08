@@ -1,0 +1,24 @@
+.img_apoyo{
+    width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin: 0 auto;
+   transition: all 0.3s ease; 
+   display: block; 
+}
+.marg_apoyo{
+width: 20%;
+  margin: auto;
+}
+.img_apoyo:hover {
+  width: 110%;                 /* Crece al 110% */
+  transform: scale(1.1);       /* Alternativa: escala en lugar de width */
+  margin: 0 auto;              /* Mantiene centrado */
+}
+.contenedor-apoyo.horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 1% auto;
+}

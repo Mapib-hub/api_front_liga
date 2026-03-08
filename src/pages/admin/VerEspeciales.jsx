@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../assets/css/especiales.css";
+import { BASE_URL } from "../../api"; // ✅ Solo importamos BASE_URL
+import "../../assets/css/admin/especiales.css";
 
-const API_URL = "http://192.168.1.250/api_backend/admin/fixture/especiales";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ SOLO BASE_URL en todas las rutas
+const API_URL = `${BASE_URL}admin/fixture/especiales`;
+const IMG_BASE = `${BASE_URL}`;
+//const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const Especiales = () => {
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ const Especiales = () => {
 
   const fetchEspeciales = async () => {
     try {
+      // ✅ axios con URL completa
       const res = await axios.get(API_URL);
       setPartidos(res.data.partidos || []);
       setLoading(false);

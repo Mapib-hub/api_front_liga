@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../../assets/css/editar-partido.css";
+import api, { BASE_URL } from "../../api"; // ✅ Importamos api y BASE_URL
+import "../../assets/css/admin/editar-partido.css";
 
-const PARTIDO_API = "http://192.168.1.250/api_backend/admin/fixture/partido";
-const JUGADORES_API =
-  "http://192.168.1.250/api_backend/admin/fixture/get-jugadores-partido";
-const GOLES_API =
-  "http://192.168.1.250/api_backend/admin/registro/guardarGolesPartido";
-const IMG_BASE = "http://192.168.1.250/api_backend/uploads/logos/";
+// ✅ URLs corregidas usando BASE_URL
+const PARTIDO_API = `${BASE_URL}admin/fixture/partido`;
+const JUGADORES_API = `${BASE_URL}admin/fixture/get-jugadores-partido`;
+const GOLES_API = `${BASE_URL}admin/registro/guardarGolesPartido`;
+const GUARDAR_API = `${BASE_URL}admin/fixture/guardarGolesFecha`; // ✅ Agregamos esta constante
+const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const EditarPartido = () => {
   const { id } = useParams();
@@ -41,7 +41,8 @@ const EditarPartido = () => {
   const fetchPartido = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${PARTIDO_API}/${id}`);
+      // ✅ Cambiado a api.get con ruta limpia
+      const response = await api.get(`/admin/fixture/partido/${id}`);
       setPartido(response.data);
     } catch (error) {
       console.error("Error al cargar partido:", error);
@@ -100,7 +101,10 @@ const EditarPartido = () => {
     setDropdownActivo(null);
 
     try {
-      const response = await axios.get(`${JUGADORES_API}/${partido.id}`);
+      // ✅ Cambiado a api.get con ruta limpia
+      const response = await api.get(
+        `/admin/fixture/get-jugadores-partido/${partido.id}`,
+      );
       setJugadoresLocal(response.data.local || []);
       setJugadoresVisita(response.data.visita || []);
       setModalAbierto(true);
@@ -160,9 +164,14 @@ const EditarPartido = () => {
         }
       });
 
-      const response = await axios.post(GOLES_API, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // ✅ Cambiado a api.post con ruta limpia
+      const response = await api.post(
+        "/admin/registro/guardarGolesPartido",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
 
       if (response.data.success) {
         alert("✅ " + response.data.message);
@@ -196,11 +205,10 @@ const EditarPartido = () => {
       const formData = new FormData();
       formData.append("datos", JSON.stringify(datosParaEnviar));
 
-      // 3. Enviamos
-      const response = await axios.post(
-        "http://192.168.1.250/api_backend/admin/fixture/guardarGolesFecha",
+      // 3. Enviamos con api.post
+      const response = await api.post(
+        "/admin/fixture/guardarGolesFecha",
         formData,
-        // No fuerces headers aquí, deja que Axios calcule el boundary del FormData
       );
 
       if (response.data.status) {
@@ -397,7 +405,7 @@ const EditarPartido = () => {
         </div>
       </div>
 
-      {/* MODAL DE GOLEADORES */}
+      {/* MODAL DE GOLEADORES (igual, sin cambios) */}
       {modalAbierto && (
         <div className="modal-overlay">
           <div className="modal-content">
