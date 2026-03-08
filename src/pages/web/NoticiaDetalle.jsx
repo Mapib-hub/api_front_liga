@@ -93,7 +93,7 @@ const NoticiaDetalle = () => {
   return (
     <div className="noticia-detalle-container">
       <div className="container mar_cont">
-        <div className="row shadow-lg p-4">
+        <div className="row_mod shadow-lg p-4">
           {/* Título de la noticia */}
           <h1 className="tit_noti_det">{noticia.titulo}</h1>
           <p className="fecha_noti">{formatearFecha(noticia.fecha_creacion)}</p>
@@ -142,14 +142,14 @@ const NoticiaDetalle = () => {
               />
             </div>
           </div>
-          <hr />
-
-          {/* 👇 APOYO PUBLICITARIO - ANTES DEL DESGLOSE */}
           {institucionId && apoyosMap[parseInt(institucionId)] && (
             <div className="apoyo-container mb-4">
               {React.createElement(apoyosMap[parseInt(institucionId)])}
             </div>
           )}
+          <hr />
+
+          {/* 👇 APOYO PUBLICITARIO - ANTES DEL DESGLOSE */}
 
           {/* Galería de imágenes extra */}
           {imagenesExtra && imagenesExtra.length > 0 && (
