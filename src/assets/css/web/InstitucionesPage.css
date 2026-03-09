@@ -174,12 +174,16 @@
   }
 
   .logo-institucion-v2 {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
   }
 
   .nombre-institucion-v2 {
     font-size: 1rem;
+    color: #fff;
+  }
+  .institucion-card-v2 {
+    background-color: #02626c;
   }
 }
 

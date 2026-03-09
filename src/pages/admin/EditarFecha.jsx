@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import api, { BASE_URL } from "../../api"; // ✅ Importamos api y BASE_URL
 import "../../assets/css/admin/editar-fecha.css";
@@ -8,7 +9,8 @@ const API_URL = `${BASE_URL}admin/partidos/serie`;
 const JUGADORES_API = `${BASE_URL}admin/fixture/get-jugadores-partido`;
 const GOLES_API = `${BASE_URL}admin/registro/guardarGolesPartido`;
 const GUARDAR_API = `${BASE_URL}admin/fixture/guardarGolesFecha`;
-const IMG_BASE = `${BASE_URL}uploads/logos/`;
+const IMG_BASE = `${BASE_URL}`;
+//const IMG_BASE = `${BASE_URL}uploads/logos/`;
 
 const EditarFecha = () => {
   const { serieId, fechaId } = useParams();
@@ -44,8 +46,13 @@ const EditarFecha = () => {
     try {
       setLoading(true);
       // ✅ Cambiado a api.get con ruta limpia
-      const response = await api.get(
-        `/admin/partidos/serie/${serieId}/fecha/${fechaId}`,
+      const response = await axios.get(
+        `${BASE_URL}admin/partidos/serie/${serieId}/fecha/${fechaId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       );
 
       if (response.data.success) {
@@ -112,10 +119,16 @@ const EditarFecha = () => {
     setDropdownActivo(null);
 
     try {
-      // ✅ Cambiado a api.get con ruta limpia
-      const response = await api.get(
-        `/admin/fixture/get-jugadores-partido/${partido.id}`,
+      // Para get-jugadores-partido
+      const response = await axios.get(
+        `${BASE_URL}admin/fixture/get-jugadores-partido/${partido.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       );
+
       setJugadoresLocal(response.data.local || []);
       setJugadoresVisita(response.data.visita || []);
       setModalAbierto(true);
@@ -176,11 +189,15 @@ const EditarFecha = () => {
       });
 
       // ✅ Cambiado a api.post con ruta limpia
-      const response = await api.post(
-        "/admin/registro/guardarGolesPartido",
+      // Para guardar goleadores
+      const response = await axios.post(
+        `${BASE_URL}admin/registro/guardarGolesPartido`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
       );
 
@@ -223,12 +240,15 @@ const EditarFecha = () => {
       const formData = new FormData();
       formData.append("datos", JSON.stringify(datos));
 
-      // ✅ Cambiado a api.post con ruta limpia
-      const response = await api.post(
-        "/admin/fixture/guardarGolesFecha",
+      // Para guardar todos los cambios
+      const response = await axios.post(
+        `${BASE_URL}admin/fixture/guardarGolesFecha`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
       );
 

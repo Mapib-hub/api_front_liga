@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
 // Componentes
 import Noticias from "./pages/admin/Noticias";
@@ -36,62 +37,69 @@ import NoticiaDetalle from "./pages/web/NoticiaDetalle";
 //import FixturePublico from "./pages/web/FixturePublico";
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LayoutWeb />}>
-          <Route index element={<Home />} />
-          <Route path="/instituciones" element={<InstitucionesPage />} />
-          <Route path="/detalle-serie/:slug" element={<SerieDetalle />} />
-          <Route path="/noticias" element={<NoticiasPage />} />
-          <Route path="/historia" element={<Historia />} />
-          <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/instituciones/:slug" element={<InstitucionDetalle />} />
-          <Route path="/noticia/:slug" element={<NoticiaDetalle />} />
-          <Route path="/fixture-completo" element={<FixtureTorneo />} />
-          {/* <Route path="noticias/:slug" element={<DetalleNoticia />} />
+    <HelmetProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LayoutWeb />}>
+            <Route index element={<Home />} />
+            <Route path="/instituciones" element={<InstitucionesPage />} />
+            <Route path="/detalle-serie/:slug" element={<SerieDetalle />} />
+            <Route path="/noticias" element={<NoticiasPage />} />
+            <Route path="/historia" element={<Historia />} />
+            <Route path="/nosotros" element={<Nosotros />} />
+            <Route
+              path="/instituciones/:slug"
+              element={<InstitucionDetalle />}
+            />
+            <Route path="/noticia/:slug" element={<NoticiaDetalle />} />
+            <Route path="/fixture-completo" element={<FixtureTorneo />} />
+            {/* <Route path="noticias/:slug" element={<DetalleNoticia />} />
           <Route path="fixture-completo" element={<FixturePublico />} />
            Aquí irán las tablas de posiciones, etc */}
-        </Route>
-        <Route path="/login" element={<Login />} />
-
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="noticias" element={<Noticias />} />
-          <Route path="series" element={<Series />} />
-          <Route path="fechas" element={<Fechas />} />
-          <Route path="jugadores" element={<Jugadores />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
           <Route
-            path="fixture/generar-jornada/:principalId"
-            element={<GenerarJornada />}
-          />
-          <Route path="fixture/partidoUnico" element={<CrearPartidoUnico />} />
-          <Route path="temporadas" element={<Temporadas />} />
-          <Route path="fixture/especiales" element={<VerEspeciales />} />
-          <Route
-            path="fixture/editar-partido/:id"
-            element={<EditarPartido />}
-          />
-          <Route path="instituciones" element={<Instituciones />} />
-          <Route path="goleadores" element={<Goleadores />} />
-          <Route path="fixture/:fechaId?" element={<Fixture />} />
-          <Route path="fixture" element={<Fixture />} />
-          <Route path="fixture/serie/:id" element={<FixtureSerie />} />
-          <Route
-            path="fixture/serie/:serieId/fecha/:fechaId"
-            element={<EditarFecha />}
-          />
-        </Route>
-      </Routes>{" "}
-      {/* ← Y ESTO */}
-    </Router>
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="noticias" element={<Noticias />} />
+            <Route path="series" element={<Series />} />
+            <Route path="fechas" element={<Fechas />} />
+            <Route path="jugadores" element={<Jugadores />} />
+            <Route
+              path="fixture/generar-jornada/:principalId"
+              element={<GenerarJornada />}
+            />
+            <Route
+              path="fixture/partidoUnico"
+              element={<CrearPartidoUnico />}
+            />
+            <Route path="temporadas" element={<Temporadas />} />
+            <Route path="fixture/especiales" element={<VerEspeciales />} />
+            <Route
+              path="fixture/editar-partido/:id"
+              element={<EditarPartido />}
+            />
+            <Route path="instituciones" element={<Instituciones />} />
+            <Route path="goleadores" element={<Goleadores />} />
+            <Route path="fixture/:fechaId?" element={<Fixture />} />
+            <Route path="fixture" element={<Fixture />} />
+            <Route path="fixture/serie/:id" element={<FixtureSerie />} />
+            <Route
+              path="fixture/serie/:serieId/fecha/:fechaId"
+              element={<EditarFecha />}
+            />
+          </Route>
+        </Routes>{" "}
+        {/* ← Y ESTO */}
+      </Router>
+    </HelmetProvider>
   );
 }
 

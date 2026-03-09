@@ -13,7 +13,7 @@ const Layout = () => {
     try {
       // 1. Opcional: Avisar al servidor para que destruya la sesión PHP
       const API_BASE_URL = "https://api.asofutbolsanjavier.cl";
-      await axios.get(`${API_BASE_URL}/admin/logout`);
+      await axios.get(`${API_BASE_URL}admin/logout`);
     } catch (e) {
       console.log("Sesión ya cerrada en el servidor");
     } finally {

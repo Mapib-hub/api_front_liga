@@ -86,7 +86,6 @@
 
 /* ===== TABLA DE LUJO ===== */
 .table-container {
-  background: var(--card-bg);
   border-radius: 24px;
   border: 1px solid var(--border-color);
   overflow: hidden;
@@ -97,6 +96,7 @@
 .editar-table {
   width: 100%;
   border-collapse: collapse;
+  background: #0b4458 !important;
 }
 
 .editar-table th {
@@ -130,18 +130,19 @@
 .equipo-nombre {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--text-primary);
+  color: #fff !important;
 }
 
 .equipo-logo-small {
-  width: 35px;
-  height: 35px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   border-radius: 8px;
   background: var(--dark-bg);
   padding: 4px;
   border: 1px solid var(--border-color);
   transition: all 0.3s;
+  vertical-align: middle;
 }
 
 .partido-row:hover .equipo-logo-small {

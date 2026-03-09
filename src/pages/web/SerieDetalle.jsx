@@ -66,7 +66,7 @@ const SerieDetalle = () => {
       </nav>
 
       {/* Título de la serie actual */}
-      <div className="serie-descripcion">
+      <div className="serie-descripcion-web">
         <h1>{serie.nombre.toUpperCase()}</h1>
         <p>{serie.descripcion}</p>
       </div>
@@ -91,29 +91,56 @@ const SerieDetalle = () => {
               </tr>
             </thead>
             <tbody>
-              {tabla.map((equipo, index) => (
-                <tr key={equipo.id}>
-                  <td className="club-cell">
-                    <img
-                      src={`${BASE_URL}${equipo.escudo}`}/*src={`${BASE_URL}uploads/logos/${equipo.escudo}`} */
-                      alt={equipo.nombre}
-                      className="club-escudo"
-                    />
-                    <span>{equipo.nombre}</span>
-                  </td>
-                  <td className="pts">{equipo.PTS}</td>
-                  <td>{equipo.PJ}</td>
-                  <td>{equipo.PG}</td>
-                  <td>{equipo.PE}</td>
-                  <td className="red">{equipo.PP}</td>
-                  <td>{equipo.GF}</td>
-                  <td>{equipo.GC}</td>
-                  <td>{equipo.DG}</td>
-                  <td className="porcentaje">
-                    {((equipo.PTS / (equipo.PJ * 3)) * 100).toFixed(1)}%
-                  </td>
-                </tr>
-              ))}
+              {/* ===== INICIO DE LOS CAMBIOS ===== */}
+              {tabla.map((equipo, index) => {
+                // La posición es index + 1 (porque el array empieza en 0)
+                const posicion = index + 1;
+
+                // 🔴 NUEVO: Determinar la clase CSS según las reglas
+                let rowClass = "";
+
+                // 🔴 NUEVO: Serie infantil (ID menor o igual a 3)
+                if (serie.id <= 3) {
+                  // Colorear posiciones 1 a 8
+                  if (posicion <= 8) {
+                    rowClass = "infantil-destacado";
+                  }
+                }
+                // 🔴 NUEVO: Serie adulta (ID mayor a 3)
+                else {
+                  if (posicion === 1) {
+                    rowClass = "campeon";
+                  } else if (posicion >= 2 && posicion <= 5) {
+                    rowClass = "clasificado";
+                  }
+                }
+
+                return (
+                  // 🔴 NUEVO: Agregamos la clase calculada a la fila
+                  <tr key={equipo.id} className={rowClass}>
+                    <td className="club-cell">
+                      <img
+                        src={`${BASE_URL}${equipo.escudo}`}
+                        alt={equipo.nombre}
+                        className="club-escudo"
+                      />
+                      <span>{equipo.nombre}</span>
+                    </td>
+                    <td className="pts">{equipo.PTS}</td>
+                    <td>{equipo.PJ}</td>
+                    <td>{equipo.PG}</td>
+                    <td>{equipo.PE}</td>
+                    <td className="red">{equipo.PP}</td>
+                    <td>{equipo.GF}</td>
+                    <td>{equipo.GC}</td>
+                    <td>{equipo.DG}</td>
+                    <td className="porcentaje">
+                      {((equipo.PTS / (equipo.PJ * 3)) * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                );
+              })}
+              {/* ===== FIN DE LOS CAMBIOS ===== */}
             </tbody>
           </table>
         </div>
@@ -160,7 +187,7 @@ const SerieDetalle = () => {
                             <td className="text-end align-middle text-white-50">
                               <img
                                 className="img-tablaPos"
-                                src={`${BASE_URL}${partido.logo_local}`}/*src={`${BASE_URL}uploads/logos/${partido.logo_local}`} */
+                                src={`${BASE_URL}${partido.logo_local}`}
                                 alt={partido.nombre_local}
                                 onError={(e) => {
                                   e.target.src =
@@ -178,7 +205,7 @@ const SerieDetalle = () => {
                               {partido.nombre_visita}
                               <img
                                 className="img-tablaPos"
-                                src={`${BASE_URL}${partido.logo_visita}`}/*src={`${BASE_URL}uploads/logos/${partido.logo_visita}`} */
+                                src={`${BASE_URL}${partido.logo_visita}`}
                                 alt={partido.nombre_visita}
                                 onError={(e) => {
                                   e.target.src =
@@ -250,7 +277,7 @@ const SerieDetalle = () => {
                             <td className="text-end align-middle text-white-50">
                               <img
                                 className="img-tablaPos"
-                                src={`${BASE_URL}${partido.logo_local}`}/*src={`${BASE_URL}uploads/logos/${partido.logo_local}`} */
+                                src={`${BASE_URL}${partido.logo_local}`}
                                 alt={partido.nombre_local}
                                 onError={(e) => {
                                   e.target.src =
@@ -268,7 +295,7 @@ const SerieDetalle = () => {
                               {partido.nombre_visita}
                               <img
                                 className="img-tablaPos"
-                                src={`${BASE_URL}${partido.logo_visita}`}/*src={`${BASE_URL}uploads/logos/${partido.logo_visita}`} */
+                                src={`${BASE_URL}${partido.logo_visita}`}
                                 alt={partido.nombre_visita}
                                 onError={(e) => {
                                   e.target.src =

@@ -513,7 +513,10 @@ h3.fw-bold {
   h2 {
     font-size: 1.5rem;
   }
-
+  .img-thumbnail {
+    width: 200px;
+    height: 200px;
+  }
   .col-md-6 {
     width: 100%;
   }
@@ -562,8 +565,8 @@ h3.fw-bold {
   }
 
   .img-thumbnail {
-    width: 80px;
-    height: 80px;
+    width: 200px;
+    height: 200px;
   }
 
   .puesto-badge {

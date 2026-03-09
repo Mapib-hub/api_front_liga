@@ -20,14 +20,14 @@
   font-family: "Arial", sans-serif;
   padding: 20px 0;
 }
-.btn_volver{
+.btn_volver {
   display: ruby;
   width: 400px !important;
   background-color: #006627;
   color: #fff;
   padding: 3%;
   text-decoration: none;
-  border-radius: 10px
+  border-radius: 10px;
 }
 .container {
   max-width: 1400px;

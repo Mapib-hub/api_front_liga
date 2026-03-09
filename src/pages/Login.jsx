@@ -38,7 +38,7 @@ const Login = () => {
 
       // ✅ Usamos axios con BASE_URL (sin /api)
       const response = await axios.post(
-        `${API_BASE_URL}/admin/login/autenticar`,
+        `${API_BASE_URL}admin/login/autenticar`,
         formDataToSend,
       );
 

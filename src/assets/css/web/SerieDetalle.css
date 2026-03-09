@@ -80,9 +80,13 @@
   margin-bottom: 5px;
 }
 
-.serie-descripcion {
-  color: var(--text-light);
+.serie-descripcion-web {
+  color: #fff;
   font-style: italic;
+  background: rgb(2, 98, 108);
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 2px solid rgb(0, 45, 50);
 }
 
 /* ===== TABLA DE POSICIONES ===== */
@@ -371,5 +375,58 @@ tr:hover {
 
   .table-dark tbody td {
     font-size: 0.85rem;
+  }
+}
+/* ===== COLORES ESPECIALES PARA POSICIONES ===== */
+
+/* Series infantiles - posiciones 1-8 */
+tr.infantil-destacado {
+  background-color: rgb(2, 99, 118) !important;
+  border-left: 4px solid var(--neon-blue);
+}
+
+tr.infantil-destacado:hover {
+  background-color: rgba(0, 212, 255, 0.25) !important;
+}
+
+/* Series adultas - CAMPEÓN (puesto 1) */
+tr.campeon {
+  background-color: rgb(203, 176, 23) !important; /* Dorado */
+  border-left: 4px solid gold;
+  font-weight: bold;
+}
+
+tr.campeon:hover {
+  background-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+tr.campeon td:first-child {
+  position: relative;
+}
+/*
+tr.campeon td:first-child::before {
+  content: "👑";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+*/
+/* Series adultas - CLASIFICADOS (puestos 2-5) */
+tr.clasificado {
+  background-color: rgb(18, 84, 183) !important;
+  border-left: 4px solid #0066ff;
+}
+
+tr.clasificado:hover {
+  background-color: rgba(0, 100, 255, 0.2) !important;
+}
+
+/* Para mantener la consistencia en responsive */
+@media (max-width: 768px) {
+  tr.campeon td:first-child::before {
+    font-size: 1rem;
+    left: -2px;
   }
 }

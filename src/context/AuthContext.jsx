@@ -16,28 +16,69 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  useEffect(() => {
+  // Función para configurar el token en axios
+  const setAuthToken = (token) => {
     if (token) {
-      // Configurar token en axios
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      // Aquí después verificaremos el token con el backend
-      setUser(JSON.parse(localStorage.getItem("user") || "null"));
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
     }
-    setLoading(false);
+  };
+
+  useEffect(() => {
+    const initializeAuth = () => {
+      if (token) {
+        // Configurar token en axios
+        setAuthToken(token);
+
+        // Leer usuario de forma segura
+        try {
+          const userStr = localStorage.getItem("user");
+          if (userStr && userStr !== "undefined" && userStr !== "null") {
+            const parsedUser = JSON.parse(userStr);
+            setUser(parsedUser);
+          } else {
+            // Si no hay usuario válido, limpiamos el token también
+            localStorage.removeItem("token");
+            setAuthToken(null);
+            setToken(null);
+          }
+        } catch (error) {
+          // Si hay error, limpiamos todo
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          setAuthToken(null);
+          setToken(null);
+        }
+      }
+      setLoading(false);
+    };
+
+    initializeAuth();
   }, [token]);
 
-  const login = (userData, token) => {
-    localStorage.setItem("token", token);
+  const login = (userData, newToken) => {
+    // Guardar en localStorage
+    localStorage.setItem("token", newToken);
     localStorage.setItem("user", JSON.stringify(userData));
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    setToken(token);
+
+    // Configurar axios
+    setAuthToken(newToken);
+
+    // Actualizar estado
+    setToken(newToken);
     setUser(userData);
   };
 
   const logout = () => {
+    // Limpiar localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    delete axios.defaults.headers.common["Authorization"];
+
+    // Limpiar axios
+    setAuthToken(null);
+
+    // Actualizar estado
     setToken(null);
     setUser(null);
   };
@@ -48,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     loading,
+    isAuthenticated: !!token && !!user,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
